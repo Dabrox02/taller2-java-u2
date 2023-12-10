@@ -2,12 +2,23 @@ package com.local;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println(cifradoCesar("holaZ_*&", 1));
         System.out.println(romanoAEntero("IV"));
+        System.out.println(emailValido("jaiderstyven@gmail.com"));
+    }
+
     
+
+    static boolean emailValido(String email){
+        String patronEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(patronEmail);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     static int romanoAEntero(String romano){
