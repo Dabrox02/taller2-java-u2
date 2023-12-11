@@ -2,6 +2,7 @@ package com.local;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +12,50 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) {
         System.out.println(cifradoCesar("holaZ_*&", 1));
-        System.out.println(romanoAEntero("IV"));
-        System.out.println(emailValido("jaiderstyven@gmail.com"));
+        System.out.println(romanoAEntero("IgV"));
+        System.out.println(emailValido("jaiderstyven@gmail.com") ? "Email valido": "Email Invalido");
         System.out.println(convertirFechaUnix("12/10/2023"));
+        charUnion("ab", "cd");
+    }
+
+    static void generarCombinaciones(int[] arreglo, int indice) {
+        if (indice == arreglo.length - 1) {
+            char[] arregloChar = arrayIntChar(arreglo);
+            System.out.println(Arrays.toString(arregloChar));
+        } else {
+            for (int i = indice; i < arreglo.length; i++) {
+                int temp = arreglo[indice];
+                arreglo[indice] = arreglo[i];
+                arreglo[i] = temp;
+                generarCombinaciones(arreglo, indice + 1);
+                temp = arreglo[indice];
+                arreglo[indice] = arreglo[i];
+                arreglo[i] = temp;
+            }
+        }
+    }
+
+    static char[] arrayIntChar(int[] arreglo){
+        char[] arrChar = new char[arreglo.length];
+        for(int i = 0; i < arreglo.length; i++) {
+            arrChar[i] = (char) arreglo[i];
+        }
+        return arrChar;
+    }
+
+    static void charUnion(String cad1, String cad2){
+        int[] caracteres = new int[cad1.length() + cad2.length()];
+        char[] charcad1 = cad1.toCharArray();
+        char[] charcad2 = cad2.toCharArray();
+        int i = 0;
+        for (i = 0; i < charcad1.length; i++) {
+            caracteres[i] = charcad1[i]; 
+        }
+        for (int j = 0; j < charcad2.length; j++) {
+            caracteres[i] = charcad2[j]; 
+            i++;
+        }
+        generarCombinaciones(caracteres, 0);
     }
 
     static String convertirFechaUnix(String fechaString){
@@ -25,7 +67,7 @@ public class Main {
         } catch (ParseException e) {
             System.out.println("Error al convertir la fecha: " + e.getMessage());
             return null; 
-        }    
+        }
     }
 
     static boolean emailValido(String email){

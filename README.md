@@ -9,4 +9,4 @@
 
 - Escribe un programa en Java que tome una fecha en formato "dd/mm/yyyy" y la convierta al formato "yyyy-mm-dd".
 
--Escribe un programa en Java que tome dos cadenas y genere todas las posibles combinaciones de las letras de ambas cadenas. Cada combinación debe contener exactamente una letra de cada cadena.
+- Escribe un programa en Java que tome dos cadenas y genere todas las posibles combinaciones de las letras de ambas cadenas. Cada combinación debe contener exactamente una letra de cada cadena.
