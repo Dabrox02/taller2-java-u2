@@ -1,5 +1,8 @@
 package com.local;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -10,9 +13,20 @@ public class Main {
         System.out.println(cifradoCesar("holaZ_*&", 1));
         System.out.println(romanoAEntero("IV"));
         System.out.println(emailValido("jaiderstyven@gmail.com"));
+        System.out.println(convertirFechaUnix("12/10/2023"));
     }
 
-    
+    static String convertirFechaUnix(String fechaString){
+        try {
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha = formatoEntrada.parse(fechaString);
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("yyyy-MM-dd");
+            return formatoSalida.format(fecha);
+        } catch (ParseException e) {
+            System.out.println("Error al convertir la fecha: " + e.getMessage());
+            return null; 
+        }    
+    }
 
     static boolean emailValido(String email){
         String patronEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
